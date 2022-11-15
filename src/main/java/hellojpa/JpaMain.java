@@ -19,8 +19,8 @@ public class JpaMain {
 
         try {
             /*
-//            Member findMember = em.find(Member.class, 1L);
-//            findMember.setName("HelloJPA");
+            Member findMember = em.find(Member.class, 1L);
+            findMember.setName("HelloJPA");
             //비영속
             Member member1 = new Member();
             member1.setId(101L);
@@ -75,10 +75,11 @@ public class JpaMain {
             */
 
             Member member = new Member();
-            member.setId(2L);
+            //member.setId(2L);
             member.setUsername("B");
             member.setRoleType(RoleType.ADMIN);
 
+            System.out.println("=======================");
             em.persist(member);
             System.out.println("=======================");
 

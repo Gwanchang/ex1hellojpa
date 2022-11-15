@@ -6,9 +6,19 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity //jpa 가 관리한다
+//@SequenceGenerator(name = "member_seq_generator",
+//sequenceName = "member_seq")
+//@TableGenerator(
+//        name = "MEMBER_SEQ_GENERATOR",
+//        table = "MY_SEQUENCES",
+//        pkColumnValue = "MEMBER_SEQ", allocationSize = 1)
 public class Member {
 
+    //기본 키 매핑 어노테이션 : @Id, @GeneratedValue
     @Id //PK
+//    @GeneratedValue(strategy = GenerationType.TABLE,
+//            generator = "MEMBER_SEQ_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "name", nullable = false) //DB에 이름을 "name"으로 한다. nullable = false : not null 제약 조건
