@@ -15,16 +15,49 @@ import java.util.Date;
 public class Member {
 
     //기본 키 매핑 어노테이션 : @Id, @GeneratedValue
-    @Id //PK
+     //PK
 //    @GeneratedValue(strategy = GenerationType.TABLE,
 //            generator = "MEMBER_SEQ_GENERATOR")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
+    @Column(name = "MEMBER_ID")
     private Long id;
 
-    @Column(name = "name", nullable = false) //DB에 이름을 "name"으로 한다. nullable = false : not null 제약 조건
+    @Column(name = "USERNAME") //DB에 이름을 "name"으로 한다. nullable = false : not null 제약 조건
     private String username;
 
-    private Integer age;
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
+
+//    @ManyToOne
+//    @JoinColumn(name = "TEAM_ID")
+//    private Team team; //다대일
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    /*public void setTeam(Team team) {
+        this.team = team;
+        //team.getMembers().add(this); //연관관계 편의 메소드
+    }*/
+
+    /* private Integer age;
 
     @Enumerated(EnumType.STRING)//DB에는 Enum 타입이 없기 때문에 String으로 돌려준다.
     //@Enumerated : EnumType.ORDINAL이 기본 값이며 숫자들어가서 안된다.
@@ -109,5 +142,5 @@ public class Member {
 
     public void setTemp(int temp) {
         this.temp = temp;
-    }
+    }*/
 }

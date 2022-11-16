@@ -74,14 +74,30 @@ public class JpaMain {
             em.detach(member); // 준영속 상태 : 영속성 컨텍스트에서 더 이상 관리하지 않는다.
             */
 
-            Member member = new Member();
-            //member.setId(2L);
-            member.setUsername("B");
-            member.setRoleType(RoleType.ADMIN);
+            /*//저장
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);*/
 
-            System.out.println("=======================");
+            /*Member member = new Member();
+            member.setUsername("member1");
+            member.setTeam(team); //연관관계의 주인에 값 설정
+            em.persist(member);*/
+
+            //team.getMembers().add(member);
+
+            Member member = new Member();
+            member.setUsername("member1");
+
             em.persist(member);
-            System.out.println("=======================");
+
+            Team team = new Team();
+            team.setName("teamA");
+            team.getMembers().add(member);
+
+            em.persist(team);
+
+            //Team findTeam = em.find(Team.class, team.getId()); //1차 캐시
 
             tx.commit();
         } catch(Exception e) {
