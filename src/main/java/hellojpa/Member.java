@@ -35,6 +35,10 @@ public class Member {
 //    @ManyToOne
 //    @JoinColumn(name = "TEAM_ID")
 //    private Team team; //다대일
+    
+//    @ManyToOne
+//    @JoinColumn(name = "TEAM_ID",insertable = false, updatable = false)
+//    private Team team; 일대다 양방향 : insertable = false, updatable = false 으로 읽기 전용으로 맵핑
 
     public Long getId() {
         return id;
