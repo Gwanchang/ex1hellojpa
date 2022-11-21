@@ -5,24 +5,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team extends BaseEntity{
+public class Parent {
 
     @Id
     @GeneratedValue
-    @Column(name = "TEAM_ID")
     private Long id;
     private String name;
-    
-    @OneToMany  //(mappedBy = "team") // Member에 team이라는 변수랑 연결, 읽기만 가능
-    @JoinColumn(name = "TEAM_ID")
-    private List<Member> members = new ArrayList<>();
 
-    public List<Member> getMembers() {
-        return members;
+    @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Child> childList = new ArrayList<>();
+
+    public List<Child> getChildList() {
+        return childList;
     }
 
-    public void setMembers(List<Member> members) {
-        this.members = members;
+    public void setChildList(List<Child> childList) {
+        this.childList = childList;
+    }
+
+    public void addChild(Child child) {
+        childList.add(child);
+        child.setParent(this);
     }
 
     public Long getId() {
